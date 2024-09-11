@@ -1,0 +1,6 @@
+Flask
+Flask-RESTful
+Pillow
+numpy
+tflite-runtime
+gunicorn
