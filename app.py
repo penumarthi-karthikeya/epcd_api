@@ -3,19 +3,25 @@ from flask_restful import Resource, Api
 from PIL import Image
 import numpy as np
 import io
+import os
 import tflite_runtime.interpreter as tflite
-
-# Load the TFLite model and allocate tensors
-interpreter = tflite.Interpreter(model_path='model.tflite')
-interpreter.allocate_tensors()
-
-# Get input and output details
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
 
 # Initialize Flask app and API
 app = Flask(__name__)
 api = Api(app)
+
+# Load the TFLite model and allocate tensors
+try:
+    model_path = os.path.join(os.path.dirname(__file__), 'model.tflite')
+    interpreter = tflite.Interpreter(model_path=model_path)
+    interpreter.allocate_tensors()
+    
+    # Get input and output details
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+except Exception as e:
+    print(f"Error loading the model: {str(e)}")
+    # You might want to exit here or handle the error appropriately
 
 # Health check route
 @app.route('/health', methods=['GET'])
@@ -58,4 +64,4 @@ class Predict(Resource):
 api.add_resource(Predict, '/predict')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
