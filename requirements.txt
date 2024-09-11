@@ -2,5 +2,5 @@ Flask==2.3.3
 Flask-RESTful==0.3.10
 Pillow==10.0.1
 numpy==1.25.2
-tflite-runtime==2.13.0
+tflite-runtime==2.14.0
 gunicorn==21.2.0
