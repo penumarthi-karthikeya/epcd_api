@@ -1,6 +1,6 @@
-Flask
-Flask-RESTful
-Pillow
-numpy
-tflite-runtime
-gunicorn
+Flask==2.0.1
+Flask-RESTful==0.3.9
+Pillow==8.3.2
+numpy==1.21.2
+tflite-runtime==2.5.0
+gunicorn==20.1.0
