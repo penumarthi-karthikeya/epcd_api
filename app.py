@@ -3,11 +3,13 @@ from flask_restful import Resource, Api
 from PIL import Image
 import numpy as np
 import io
+from flask_cors import CORS  # Import CORS
 import os
 import tflite_runtime.interpreter as tflite
 
 # Initialize Flask app and API
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 api = Api(app)
 
 # Load the TFLite model and allocate tensors
